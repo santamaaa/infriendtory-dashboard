@@ -26,7 +26,7 @@ const Login = () => {
                 const data = await response.json()
                 localStorage.setItem('isLoggedIn', 'true')
                 localStorage.setItem('token', data.token)
-                window.location.href = '/dashboard'
+                window.location.href = '/infriendtory-dashboard/dashboard'
             } else {
                 const errorData = await response.json()
                 console.error('Login failed:', errorData.message || 'Unknown error')
