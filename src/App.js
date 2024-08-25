@@ -16,15 +16,15 @@ function App() {
   return (
     <div className="grid place-items-center">
       <div className="w-full">
-        <Router>
+        <Router basename="/infriendtory-dashboard">
           <Routes>
-            <Route path="/infriendtory-dashboard/" element={<Login />} />
-            <Route path="/infriendtory-dashboard/dashboard" element={<PrivateRoute element={<Dashboard />} />} />
-            <Route path="/infriendtory-dashboard/inventory" element={<PrivateRoute element={<Inventory />} />} />
-            <Route path="/infriendtory-dashboard/purchase" element={<PrivateRoute element={<Purchase />} />} />
-            <Route path="/infriendtory-dashboard/items" element={<PrivateRoute element={<Items />} />} />
-            <Route path="/infriendtory-dashboard/categories" element={<PrivateRoute element={<Categories />} />} />
-            <Route path="/infriendtory-dashboard/suppliers" element={<PrivateRoute element={<Suppliers />} />} />
+            <Route path="/" element={<Login />} />
+            <Route path="/dashboard" element={<PrivateRoute element={<Dashboard />} />} />
+            <Route path="/inventory" element={<PrivateRoute element={<Inventory />} />} />
+            <Route path="/purchase" element={<PrivateRoute element={<Purchase />} />} />
+            <Route path="/items" element={<PrivateRoute element={<Items />} />} />
+            <Route path="/categories" element={<PrivateRoute element={<Categories />} />} />
+            <Route path="/suppliers" element={<PrivateRoute element={<Suppliers />} />} />
           </Routes>
         </Router>
       </div>
