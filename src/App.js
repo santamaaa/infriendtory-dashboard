@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
+import Login from './pages/Login.js'
+import Dashboard from './pages/Dashboard.js'
+import Inventory from './pages/Inventory.js'
+import Purchase from './pages/Purchase.js'
+import Items from './pages/Items.js'
+import Categories from './pages/Categories.js'
+import Suppliers from './pages/Suppliers.js'
 
 function App() {
+  const PrivateRoute = ({ element }) => {
+    const isLoggedIn = localStorage.getItem('isLoggedIn')
+    return isLoggedIn ? element : <Navigate to="/" />
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="grid place-items-center">
+      <div className="w-full">
+        <Router basename="infriendtory-dashboard">
+          <Routes>
+            <Route path="/" element={<Login />} />
+            <Route path="/dashboard" element={<PrivateRoute element={<Dashboard />} />} />
+            <Route path="/inventory" element={<PrivateRoute element={<Inventory />} />} />
+            <Route path="/purchase" element={<PrivateRoute element={<Purchase />} />} />
+            <Route path="/items" element={<PrivateRoute element={<Items />} />} />
+            <Route path="/categories" element={<PrivateRoute element={<Categories />} />} />
+            <Route path="/suppliers" element={<PrivateRoute element={<Suppliers />} />} />
+          </Routes>
+        </Router>
+      </div>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
