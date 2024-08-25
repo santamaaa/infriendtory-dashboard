@@ -16,7 +16,7 @@ function App() {
   return (
     <div className="grid place-items-center">
       <div className="w-full">
-        <Router basename="/infriendtory-dashboard">
+        <Router basename="infriendtory-dashboard">
           <Routes>
             <Route path="/" element={<Login />} />
             <Route path="/dashboard" element={<PrivateRoute element={<Dashboard />} />} />
