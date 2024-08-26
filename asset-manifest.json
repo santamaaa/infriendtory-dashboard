@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/infriendtory-dashboard/static/css/main.4a4a83a8.css",
-    "main.js": "/infriendtory-dashboard/static/js/main.5423d457.js",
+    "main.js": "/infriendtory-dashboard/static/js/main.5847edf1.js",
     "static/media/checking-boxes.svg": "/infriendtory-dashboard/static/media/checking-boxes.6cf982c6c775f3955380b04cbf60523b.svg",
     "static/media/location-mark.png": "/infriendtory-dashboard/static/media/location-mark.039927ab7ae23301deec.png",
     "static/media/logo-text.svg": "/infriendtory-dashboard/static/media/logo-text.2b8eca3607647f28fc757610f7382cc2.svg",
@@ -10,6 +10,6 @@
   },
   "entrypoints": [
     "static/css/main.4a4a83a8.css",
-    "static/js/main.5423d457.js"
+    "static/js/main.5847edf1.js"
   ]
 }
