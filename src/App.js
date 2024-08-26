@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
+import { HashRouter as Router, Route, Switch, Navigate } from 'react-router-dom'
 import Login from './pages/Login.js'
 import Dashboard from './pages/Dashboard.js'
 import Inventory from './pages/Inventory.js'
@@ -17,7 +17,7 @@ function App() {
     <div className="grid place-items-center">
       <div className="w-full">
         <Router basename="infriendtory-dashboard">
-          <Routes>
+          <Switch>
             <Route path="/" element={<Login />} />
             <Route path="/dashboard" element={<PrivateRoute element={<Dashboard />} />} />
             <Route path="/inventory" element={<PrivateRoute element={<Inventory />} />} />
@@ -25,7 +25,7 @@ function App() {
             <Route path="/items" element={<PrivateRoute element={<Items />} />} />
             <Route path="/categories" element={<PrivateRoute element={<Categories />} />} />
             <Route path="/suppliers" element={<PrivateRoute element={<Suppliers />} />} />
-          </Routes>
+          </Switch>
         </Router>
       </div>
     </div>
