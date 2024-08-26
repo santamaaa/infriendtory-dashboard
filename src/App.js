@@ -14,21 +14,18 @@ function App() {
   }
 
   return (
-    <div className="grid place-items-center">
-      <div className="w-full">
-        <Router basename="infriendtory-dashboard">
-          <Routes>
-            <Route path="/" element={<Login />} />
-            <Route path="/dashboard" element={<PrivateRoute element={<Dashboard />} />} />
-            <Route path="/inventory" element={<PrivateRoute element={<Inventory />} />} />
-            <Route path="/purchase" element={<PrivateRoute element={<Purchase />} />} />
-            <Route path="/items" element={<PrivateRoute element={<Items />} />} />
-            <Route path="/categories" element={<PrivateRoute element={<Categories />} />} />
-            <Route path="/suppliers" element={<PrivateRoute element={<Suppliers />} />} />
-          </Routes>
-        </Router>
-      </div>
-    </div>
+      <Router basename="infriendtory-dashboard">
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="/dashboard" element={<PrivateRoute element={<Dashboard />} />} />
+          <Route path="/inventory" element={<PrivateRoute element={<Inventory />} />} />
+          <Route path="/purchase" element={<PrivateRoute element={<Purchase />} />} />
+          <Route path="/items" element={<PrivateRoute element={<Items />} />} />
+          <Route path="/categories" element={<PrivateRoute element={<Categories />} />} />
+          <Route path="/suppliers" element={<PrivateRoute element={<Suppliers />} />} />
+          <Route path="*" element={<Navigate to="/dashboard" />} />
+        </Routes>
+      </Router>
   )
 }
 
