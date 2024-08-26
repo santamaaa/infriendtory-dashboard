@@ -14,7 +14,8 @@ function App() {
   }
 
   return (
-      <Router basename="infriendtory-dashboard">
+      // <Router basename="infriendtory-dashboard">
+      <Router>
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/dashboard" element={<PrivateRoute element={<Dashboard />} />} />
