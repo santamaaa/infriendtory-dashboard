@@ -29,7 +29,7 @@ const Login = () => {
                 const data = await response.json()
                 localStorage.setItem('isLoggedIn', 'true')
                 localStorage.setItem('token', data.token)
-                window.location.href = navigate('/dashboard')
+                navigate('/dashboard')
             } else {
                 const errorData = await response.json()
                 console.error('Login failed:', errorData.message || 'Unknown error')
