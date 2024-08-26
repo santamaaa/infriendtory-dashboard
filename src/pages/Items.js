@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faPenToSquare, faTrash } from '@fortawesome/free-solid-svg-icons'
+import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import NavMenu from '../components/NavMenu.js'
 import MenuTitle from '../components/MenuTitle.js'
@@ -8,6 +9,7 @@ import ModalAdd from '../components/ModalAdd.js'
 import DeleteConfirmation from '../components/DeleteConfirmation.js'
 
 const Items = () => {
+    const navigate = useNavigate()
     const [modalAddIsOpen, setModalAddIsOpen] = useState(false)
     const [category, setCategory] = useState([])
     const [generatedID, setGeneratedID] = useState('')
@@ -58,7 +60,7 @@ const Items = () => {
         const fetchData = async () => {
             if (!token) {
                 alert('No session, please log in.')
-                window.location.href = '/'
+                navigate('/')
                 return
             }
 
@@ -73,7 +75,7 @@ const Items = () => {
                 if (error.response && error.response.status === 401) {
                     localStorage.removeItem('token')
                     alert('Session expired, please log in again.')
-                    window.location.href = '/'
+                    navigate('/')
                 } else {
                     console.error('Error fetching data:', error)
                 }
@@ -83,7 +85,7 @@ const Items = () => {
         const fetchCategories = async () => {
             if (!token) {
                 alert('No session, please log in.')
-                window.location.href = '/'
+                navigate('/')
                 return
             }
 
@@ -98,7 +100,7 @@ const Items = () => {
                 if (error.response && error.response.status === 401) {
                     localStorage.removeItem('token')
                     alert('Session expired, please log in again.')
-                    window.location.href = '/'
+                    navigate('/')
                 } else {
                     console.error('Error fetching data:', error)
                 }

@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
+import axios from 'axios'
 import LogoImg from '../assets/logo.svg'
 import LogoTextImg from '../assets/logo-text.svg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -11,8 +12,17 @@ const NavMenu = () => {
 
     const [mobileOthersMenu, setMobileOthersMenu] = useState(false)
 
+    const handleLogout = async () => {
+        const apiURL = process.env.REACT_APP_API_URL
+        const endpointLogout = apiURL + 'auth/logout'
 
-    const handleLogout = () => {
+        const token = localStorage.getItem('token')
+
+        await axios.post(endpointLogout, {
+            headers: {
+                'Authorization': 'Bearer ' + token
+            }
+        })
         localStorage.removeItem('isLoggedIn')
         navigate('/');
     }
