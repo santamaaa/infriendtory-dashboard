@@ -1,8 +1,11 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import LoginImg from '../assets/checking-boxes.svg'
 import Logo from '../assets/logo.svg'
 
 const Login = () => {
+    const navigate = useNavigate()
+
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState('')
@@ -26,7 +29,7 @@ const Login = () => {
                 const data = await response.json()
                 localStorage.setItem('isLoggedIn', 'true')
                 localStorage.setItem('token', data.token)
-                window.location.href = 'https://santamaa.github.io/infriendtory-dashboard/dashboard'
+                window.location.href = navigate('/dashboard')
             } else {
                 const errorData = await response.json()
                 console.error('Login failed:', errorData.message || 'Unknown error')
