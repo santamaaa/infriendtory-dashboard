@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import axios from 'axios'
 import LogoImg from '../assets/logo.svg'
 import LogoTextImg from '../assets/logo-text.svg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -13,25 +12,29 @@ const NavMenu = () => {
     const [mobileOthersMenu, setMobileOthersMenu] = useState(false)
 
     const handleLogout = async () => {
+        const apiURL = process.env.REACT_APP_API_URL
+        const endpointLogout = apiURL + 'auth/logout'
+    
         try {
-            const apiURL = process.env.REACT_APP_API_URL
-            const endpointLogout = apiURL + 'auth/logout'
+            const response = await fetch(endpointLogout, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                }
+            })
     
-            const token = localStorage.getItem('token')
+            if (response.ok) {
+                localStorage.removeItem('isLoggedIn')
+                localStorage.removeItem('token')
     
-            if (token) {
-                await axios.post(endpointLogout, {}, {
-                    headers: {
-                        'Authorization': 'Bearer ' + token
-                    }
-                })
+                navigate('/login')
+            } else {
+                const errorData = await response.json()
+                console.error('Logout failed:', errorData.message || 'Unknown error')
             }
-    
-            localStorage.removeItem('token')
-            localStorage.removeItem('isLoggedIn')
-            navigate('/')
         } catch (error) {
-            console.error('Logout failed', error)
+            console.error('Network error:', error)
         }
     }
 
