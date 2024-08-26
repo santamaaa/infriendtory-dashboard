@@ -13,18 +13,26 @@ const NavMenu = () => {
     const [mobileOthersMenu, setMobileOthersMenu] = useState(false)
 
     const handleLogout = async () => {
-        const apiURL = process.env.REACT_APP_API_URL
-        const endpointLogout = apiURL + 'auth/logout'
-
-        const token = localStorage.getItem('token')
-
-        await axios.post(endpointLogout, {
-            headers: {
-                'Authorization': 'Bearer ' + token
+        try {
+            const apiURL = process.env.REACT_APP_API_URL
+            const endpointLogout = apiURL + 'auth/logout'
+    
+            const token = localStorage.getItem('token')
+    
+            if (token) {
+                await axios.post(endpointLogout, {}, {
+                    headers: {
+                        'Authorization': 'Bearer ' + token
+                    }
+                })
             }
-        })
-        localStorage.removeItem('isLoggedIn')
-        navigate('/');
+    
+            localStorage.removeItem('token')
+            localStorage.removeItem('isLoggedIn')
+            navigate('/')
+        } catch (error) {
+            console.error('Logout failed', error)
+        }
     }
 
     const pathClass = (path) => {
