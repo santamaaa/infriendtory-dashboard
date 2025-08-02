@@ -6,6 +6,7 @@ import NavMenu from '../components/NavMenu.js'
 import MenuTitle from '../components/MenuTitle.js'
 import ModalAdd from '../components/ModalAdd.js'
 import SuppliersMap from '../components/SuppliersMap.js'
+import ModalEdit from '../components/ModalEdit.js'
 import DeleteConfirmation from '../components/DeleteConfirmation.js'
 
 const Suppliers = () => {
@@ -15,6 +16,7 @@ const Suppliers = () => {
     const [data, setData] = useState('')
     const [sortKey, setSortKey] = useState('')
     const [sortOrder, setSortOrder] = useState('asc')
+    const [modalEditIsOpen, setModalEditIsOpen] = useState(false)
     const [deleteConfirmIsOpen, setDeleteConfirmIsOpen] = useState(false)
     const [selectedItem, setSelectedItem] = useState(null)
 
@@ -111,6 +113,17 @@ const Suppliers = () => {
         item.phone_number.toLowerCase().includes(searchQuery.toLowerCase())
     )
 
+    const showModalEdit = () => {
+        setModalEditIsOpen(true)
+        console.log('ahsj')
+    }
+    const hideModalEdit = () => setModalEditIsOpen(false)
+    const styleModalEdit = modalEditIsOpen ? { display: 'grid' } : { display: 'none' }
+    const modalEditConfiguration = { 
+        title: 'Edit Supplier',
+        path: 'supplier/' + selectedItem
+    }
+
     const showDeleteConfirmation = () => setDeleteConfirmIsOpen(true)
     const hideDeleteConfirmation = () => setDeleteConfirmIsOpen(false)
     const handleDelete = async () => {
@@ -184,7 +197,11 @@ const Suppliers = () => {
                                                             <td className="w-[10%] px-6 py-4 whitespace-normal text-xs md:text-sm text-gray-800">{item.email}</td>
                                                             <td className="w-[30%] px-6 py-4 whitespace-normal text-xs md:text-sm text-gray-800">{item.phone_number}</td>
                                                             <td className="w-[10%] px-6 py-4 sticky top-0 right-0 z-0 bg-white whitespace-normal text-xs md:text-sm text-gray-800 text-center">
-                                                                <button>
+                                                                <button onClick={() => {
+                                                                    setSelectedItem(item._id)
+                                                                    showModalEdit()
+                                                                    }}
+                                                                >
                                                                     <FontAwesomeIcon icon={faPenToSquare} className="text-blue-400 text-xl" />
                                                                 </button>
                                                                 <button
@@ -210,6 +227,15 @@ const Suppliers = () => {
                         </div>
                     </div>
                 </div>
+                {/* {
+                    modalEditIsOpen && (
+                        <div style={styleModalEdit} className="w-[100vw] h-[100vh] fixed top-0 left-0 z-50 place-items-center">
+                            <div onClick={hideModalEdit} className="w-full h-full absolute top-0 left-0 z-0 bg-black/60"></div>
+                            <ModalEdit path={modalEditConfiguration.path} title={modalEditConfiguration.title} />
+                        </div>
+                    )
+                } */}
+                <ModalEdit isOpen={modalEditIsOpen} />
                 <DeleteConfirmation isOpen={deleteConfirmIsOpen} item={selectedItem} onCancel={hideDeleteConfirmation} onDelete={handleDelete} />
             </div>
         </>

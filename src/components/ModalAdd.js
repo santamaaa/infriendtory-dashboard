@@ -102,9 +102,9 @@ const ModalAdd = ({ close, title, fields, categoriesInItem, path }) => {
                                 ?
                                 (
                                     <select value={fieldValues[field.name]} onChange={(e) => handleInputChange(e, field.name)} onKeyDown={blockInvalidChar} required={field.required} disabled={field.readonly} style={{ WebkitAppearance: 'none' }} className="h-[36px] mt-1 px-2 rounded-sm outline-none bg-gray-200 text-sm">
-                                        <option value='' className="text-xs md:text-sm">Select a category</option>
+                                        <option value='' className="text-xs">Select a category</option>
                                         {categoriesInItem.map((category) => (
-                                            <option key={category._id} value={category._id} className="text-xs md:text-sm">
+                                            <option key={category._id} value={category._id} className="text-xs">
                                                 {category.category}
                                             </option>
                                         ))}
